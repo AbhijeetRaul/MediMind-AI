@@ -10,7 +10,8 @@
         age: number;
         gender: string;
         bloodGroup?: string;
-        medicalHistory?: string;
+        
+       
       }
     ) => {
       const existingUser =
@@ -59,6 +60,9 @@
       return prisma.patient.create(
         {
           data: {
+
+            patientCode: `MM-${Date.now()}`,
+            
             age:
               data.age,
 
@@ -68,9 +72,7 @@
             bloodGroup:
               data.bloodGroup,
 
-            medicalHistory:
-              data.medicalHistory,
-
+          
             userId:
               user.id,
           },
@@ -150,7 +152,7 @@
         age: number;
         gender: string;
         bloodGroup?: string;
-        medicalHistory?: string;
+       
       }
     ) => {
       return prisma.patient.update(

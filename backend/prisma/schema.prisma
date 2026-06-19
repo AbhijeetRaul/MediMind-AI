@@ -38,20 +38,47 @@ model Doctor {
   user   User   @relation(fields: [userId], references: [id])
 
   appointments Appointment[]
+  medicalRecords MedicalRecord[]
 }
 
 model Patient {
   id             String  @id @default(cuid())
+
+  patientCode    String?  @unique
+
   age            Int
   gender         String
   bloodGroup     String?
-  medicalHistory String?
+  medicalHistory String? 
 
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  userId         String  @unique
+  user           User    @relation(fields: [userId], references: [id])
 
-  appointments Appointment[]
-  bills        Bill[]
+  appointments   Appointment[]
+  bills          Bill[]
+
+  medicalRecords MedicalRecord[]
+}
+
+model MedicalRecord {
+  id            String   @id @default(cuid())
+
+  diagnosis     String
+  prescription  String?
+ allergies String?
+ visitReason String?
+  notes         String?
+
+  height        Float?
+  weight        Float?
+
+  patientId     String
+  patient       Patient  @relation(fields: [patientId], references: [id])
+
+  doctorId      String?
+  doctor        Doctor?  @relation(fields: [doctorId], references: [id])
+
+  createdAt     DateTime @default(now())
 }
 
 model Appointment {

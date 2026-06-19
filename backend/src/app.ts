@@ -10,6 +10,8 @@ import patientRoutes from "./modules/patient/patient.route";
 import appointmentRoutes from "./modules/appointment/appointment.route";
 import billingRoutes from "./modules/billing/billing.route";
 import aiRoutes from "./modules/ai/ai.route";
+import medicalRecordRoutes
+from "./modules/medical-record/medical-record.route";
 
 const app = express();
 
@@ -43,6 +45,11 @@ app.use(
 );
 
 app.use("/api/ai", aiRoutes);
+
+app.use(
+  "/api/medical-records",
+  medicalRecordRoutes
+);
 
 app.get("/", (_req, res) => {
   res.send("MediMind AI API Running 🚀");
