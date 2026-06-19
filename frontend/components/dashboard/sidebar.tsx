@@ -16,6 +16,7 @@ import {
   CreditCard,
   Bot,
   LogOut,
+  FileText,
 } from "lucide-react";
 
 import { api }
@@ -31,6 +32,7 @@ export default function Sidebar() {
     useState<User | null>(
       null
     );
+    
 
   useEffect(() => {
     const loadUser =
@@ -116,6 +118,12 @@ export default function Sidebar() {
       },
 
       {
+        name: "Medical Records",
+        href: "/dashboard/medical-records",
+        icon: FileText,
+    },
+
+      {
         name:
           "Billing",
         href:
@@ -145,6 +153,12 @@ export default function Sidebar() {
       },
 
       {
+  name: "Medical Records",
+  href: "/dashboard/medical-records",
+  icon: FileText,
+},
+
+      {
         name:
           "Appointments",
         href:
@@ -172,6 +186,12 @@ export default function Sidebar() {
         icon:
           Users,
       },
+
+      {
+  name: "Medical Records",
+  href: "/dashboard/medical-records",
+  icon: FileText,
+},
 
       {
         name:
@@ -210,6 +230,12 @@ export default function Sidebar() {
     icon:
       CreditCard,
   },
+
+  {
+  name: "My Records",
+  href: "/dashboard/medical-records",
+  icon: FileText,
+},
 
   {
     name:

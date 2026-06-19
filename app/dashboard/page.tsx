@@ -275,11 +275,11 @@ setAppointmentChartData(
       </p>
     </div>
 
-    <div className="h-55">
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-      >
+    <div className="h-[350px] w-full">
+  <ResponsiveContainer
+    width="100%"
+    height="100%"
+  >
         <AreaChart
           data={
             appointmentChartData
@@ -326,10 +326,10 @@ fill="#10B981"
       </p>
     </div>
 
-    <div className="h-[220px]">
+    <div className="h-55">
       <ResponsiveContainer
         width="100%"
-        height="100%"
+        height={300}
       >
         <AreaChart
           data={
@@ -348,10 +348,10 @@ fill="#10B981"
           />
 
           <Tooltip
-  formatter={(value) =>
-    [`₹${value}`,
-    "Revenue"]
-  }
+ formatter={(value) => [
+  `₹${Number(value ?? 0)}`,
+  "Revenue",
+]}
   contentStyle={{
     borderRadius:
       "16px",

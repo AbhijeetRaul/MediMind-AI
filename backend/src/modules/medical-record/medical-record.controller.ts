@@ -4,6 +4,7 @@ import {
   getAllMedicalRecords,
   getPatientMedicalRecords,
   deleteMedicalRecord,
+  updateMedicalRecord,
 } from "./medical-record.service";
 
 export const createMedicalRecordHandler =
@@ -48,7 +49,7 @@ export const getPatientMedicalRecordsHandler =
   ) => {
     const records =
       await getPatientMedicalRecords(
-        req.params.patientId
+        req.params.patientId as string
       );
 
     res.json(records);
@@ -61,13 +62,36 @@ export const deleteMedicalRecordHandler =
   ) => {
     try {
       await deleteMedicalRecord(
-        req.params.id
+        req.params.id as string
       );
 
       res.json({
         message:
           "Medical record deleted",
       });
+    } catch (
+      error: any
+    ) {
+      res.status(400).json({
+        message:
+          error.message,
+      });
+    }
+  };
+
+  export const updateMedicalRecordHandler =
+  async (
+    req: Request,
+    res: Response
+  ) => {
+    try {
+      const record =
+        await updateMedicalRecord(
+          req.params.id as string,
+          req.body
+        );
+
+      res.json(record);
     } catch (
       error: any
     ) {

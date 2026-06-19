@@ -150,6 +150,65 @@ setAppointmentChartData(
   monthlyData
 );
 
+const revenueMonthlyData =
+  [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ].map(
+    (
+      month,
+      index
+    ) => {
+      const revenue =
+        billingRes.data
+          .filter(
+            (
+              bill: any
+            ) => {
+              const date =
+                new Date(
+                  bill.createdAt
+                );
+
+              return (
+                date.getMonth() ===
+                index
+              );
+            }
+          )
+          .reduce(
+            (
+              sum: number,
+              bill: any
+            ) =>
+              sum +
+              (bill.transaction
+                ?.amount ||
+                0),
+            0
+          );
+
+      return {
+        month,
+        revenue,
+      };
+    }
+  );
+
+setRevenueChartData(
+  revenueMonthlyData
+);
+
           setStats({
             doctors:
               doctorsRes.data
@@ -275,11 +334,11 @@ setAppointmentChartData(
       </p>
     </div>
 
-    <div className="h-55">
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-      >
+    <div className="h-[350px] w-full">
+  <ResponsiveContainer
+    width="100%"
+    height="100%"
+  >
         <AreaChart
           data={
             appointmentChartData
@@ -326,11 +385,11 @@ fill="#10B981"
       </p>
     </div>
 
-    <div className="h-[220px]">
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-      >
+   <div className="h-[350px]">
+  <ResponsiveContainer
+    width="100%"
+    height="100%"
+  >
         <AreaChart
           data={
             revenueChartData
